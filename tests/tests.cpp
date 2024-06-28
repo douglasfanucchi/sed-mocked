@@ -3,5 +3,6 @@
 
 int main()
 {
+    RUN_UTILS_SUITE();
     std::cout << std::endl;
 }
