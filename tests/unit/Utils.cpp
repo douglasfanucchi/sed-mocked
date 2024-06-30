@@ -21,8 +21,19 @@ void test_should_not_do_nothing_when_search_word_is_present_in_the_string()
     ASSERT_STREQ(expected, result);
 }
 
+void test_should_replace_multiple_recurrences()
+{
+    std::string input = "This line contains multiple hello world, hello world!";
+    std::string expected = "This line contains multiple ola mundo, ola mundo!";
+
+    std::string result = Utils::replace("hello world", "ola mundo", input);
+
+    ASSERT_STREQ(expected, result);
+}
+
 void RUN_UTILS_SUITE()
 {
     test_should_replace_hello_world_by_ola_mundo();
     test_should_not_do_nothing_when_search_word_is_present_in_the_string();
+    test_should_replace_multiple_recurrences();
 }
