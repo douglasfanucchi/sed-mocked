@@ -13,6 +13,6 @@ $(NAME): main.cpp
 	@./$(NAME)
 
 unit: $(FILES) $(TEST_FILES)
-	@$(COMPILER) $(INCLUDES) -std=c++98 $(FILES) $(TEST_FILES) -o unit
+	@$(COMPILER) $(INCLUDES) $(FILES) $(TEST_FILES) -o unit
 	@valgrind --leak-check=full -q ./unit
 	@rm -rf unit
