@@ -53,10 +53,19 @@ void test_should_copy_a_file_and_its_name_should_be_its_original_name_dot_replac
     ASSERT_EQ(expectedLines, resultLines);
 }
 
+void test_should_not_create_replace_file_when_original_file_doesnt_exist()
+{
+    Utils::create_replace_file("tests/files/non-existent-file.txt");
+
+    std::fstream result("tests/files/non-existent-file.txt.replace");
+    ASSERT_TRUE(result.fail());
+}
+
 void RUN_UTILS_SUITE()
 {
     test_should_replace_hello_world_by_ola_mundo();
     test_should_not_do_nothing_when_search_word_is_present_in_the_string();
     test_should_replace_multiple_recurrences();
     test_should_copy_a_file_and_its_name_should_be_its_original_name_dot_replace();
+    test_should_not_create_replace_file_when_original_file_doesnt_exist();
 }
