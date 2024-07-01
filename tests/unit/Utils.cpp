@@ -40,7 +40,7 @@ void test_should_copy_a_file_and_its_name_should_be_its_original_name_dot_replac
     std::string expected;
     int expectedLines = std::count(std::istream_iterator<char>(file >> std::noskipws), {}, '\n');
 
-    Utils::create_replace_file("tests/files/lorem-ipsum.txt");
+    Utils::createReplaceFile("tests/files/lorem-ipsum.txt");
 
     std::fstream resultFile("tests/files/lorem-ipsum.txt.replace");
     int resultLines = std::count(std::istream_iterator<char>(resultFile >> std::noskipws), {}, '\n');
@@ -53,17 +53,17 @@ void test_should_copy_a_file_and_its_name_should_be_its_original_name_dot_replac
     ASSERT_EQ(expectedLines, resultLines);
 }
 
-void test_should_not_create_replace_file_when_original_file_doesnt_exist()
+void test_should_not_createReplaceFile_when_original_file_doesnt_exist()
 {
-    Utils::create_replace_file("tests/files/non-existent-file.txt");
+    Utils::createReplaceFile("tests/files/non-existent-file.txt");
 
     std::fstream result("tests/files/non-existent-file.txt.replace");
     ASSERT_TRUE(result.fail());
 }
 
-void test_should_not_create_replace_file_when_original_file_has_no_read_permission()
+void test_should_not_createReplaceFile_when_original_file_has_no_read_permission()
 {
-    Utils::create_replace_file("tests/files/no-read-permission.txt");
+    Utils::createReplaceFile("tests/files/no-read-permission.txt");
 
     std::ifstream result("tests/files/no-read-permission.txt.replace");
     ASSERT_TRUE(result.fail());
@@ -75,6 +75,6 @@ void RUN_UTILS_SUITE()
     test_should_not_do_nothing_when_search_word_is_present_in_the_string();
     test_should_replace_multiple_recurrences();
     test_should_copy_a_file_and_its_name_should_be_its_original_name_dot_replace();
-    test_should_not_create_replace_file_when_original_file_doesnt_exist();
-    test_should_not_create_replace_file_when_original_file_has_no_read_permission();
+    test_should_not_createReplaceFile_when_original_file_doesnt_exist();
+    test_should_not_createReplaceFile_when_original_file_has_no_read_permission();
 }

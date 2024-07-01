@@ -17,7 +17,7 @@ std::string Utils::replace(std::string search, std::string replace, std::string 
     return result;
 }
 
-void Utils::create_replace_file(std::string path)
+void Utils::createReplaceFile(std::string path)
 {
     std::fstream file(path.c_str(), std::ios::in);
     if (file.fail()) {
