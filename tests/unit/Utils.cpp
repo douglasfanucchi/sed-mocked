@@ -61,6 +61,14 @@ void test_should_not_create_replace_file_when_original_file_doesnt_exist()
     ASSERT_TRUE(result.fail());
 }
 
+void test_should_not_create_replace_file_when_original_file_has_no_read_permission()
+{
+    Utils::create_replace_file("tests/files/no-read-permission.txt");
+
+    std::ifstream result("tests/files/no-read-permission.txt.replace");
+    ASSERT_TRUE(result.fail());
+}
+
 void RUN_UTILS_SUITE()
 {
     test_should_replace_hello_world_by_ola_mundo();
@@ -68,4 +76,5 @@ void RUN_UTILS_SUITE()
     test_should_replace_multiple_recurrences();
     test_should_copy_a_file_and_its_name_should_be_its_original_name_dot_replace();
     test_should_not_create_replace_file_when_original_file_doesnt_exist();
+    test_should_not_create_replace_file_when_original_file_has_no_read_permission();
 }
