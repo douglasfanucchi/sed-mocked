@@ -26,6 +26,7 @@ function test_should_replace_into_the_file_the_word_foo_with_bar()
     local result=$(<$file)
 
     ASSERT_STREQ "$expected" "$result"
+    ASSERT_STREQ "3" $(stat -c%s "$file")
 
     rm -rf $file "$file.replace"
 }
@@ -34,13 +35,14 @@ function test_should_replace_into_the_file_the_sentence_hello_world_with_ola_mun
 {
     local file="test.txt"
     local args="$file 'hello world' 'ola mundo'"
-    echo -n "Writing this sentence hello world to be replaced, hello world" > $file
+    echo "Writing this sentence hello world to be replaced, hello world" > $file
     local expected="Writing this sentence ola mundo to be replaced, ola mundo"
 
     eval "$executable $args"
     local result=$(<$file)
 
     ASSERT_STREQ "$expected" "$result"
+    ASSERT_STREQ "58" $(stat -c%s "$file")
 
     rm -rf $file "$file.replace"
 }
