@@ -55,7 +55,21 @@ function test_should_receive_an_error_message_when_inputs_an_invalid_filename()
     ASSERT_STREQ "$expected" "$result"
 }
 
+function test_should_receive_an_error_message_when_pass_2_args_to_executable()
+{
+    local file="test.txt"
+    echo -n "foo" > $file
+    local args="$file 'hello world'"
+    local expected="Invalid number of arguments."
+
+    local result=$(eval "2>&1 $executable $args")
+
+    ASSERT_STREQ "$expected" "$result"
+    rm -rf $file "$file.replace"
+}
+
 test_should_replace_into_the_file_the_word_foo_with_bar
 test_should_replace_into_the_file_the_sentence_hello_world_with_ola_mundo
 test_should_receive_an_error_message_when_inputs_an_invalid_filename
+test_should_receive_an_error_message_when_pass_2_args_to_executable
 printf \\n
