@@ -45,6 +45,17 @@ function test_should_replace_into_the_file_the_sentence_hello_world_with_ola_mun
     rm -rf $file "$file.replace"
 }
 
+function test_should_receive_an_error_message_when_inputs_an_invalid_filename()
+{
+    local args="noexist.txt 'hello world' 'ola mundo'"
+    local expected="Invalid filename."
+
+    local result=$(eval "2>&1 $executable $args")
+
+    ASSERT_STREQ "$expected" "$result"
+}
+
 test_should_replace_into_the_file_the_word_foo_with_bar
 test_should_replace_into_the_file_the_sentence_hello_world_with_ola_mundo
+test_should_receive_an_error_message_when_inputs_an_invalid_filename
 printf \\n
