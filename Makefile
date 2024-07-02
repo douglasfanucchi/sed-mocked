@@ -10,7 +10,6 @@ all: $(NAME)
 
 $(NAME): $(FILES) src/main.cpp
 	@$(COMPILER) $(INCLUDES) $(FILES) src/main.cpp -o $(NAME)
-	@./$(NAME)
 
 e2e: $(NAME)
 	@./tests/e2e/Program.sh $(realpath $(NAME))
